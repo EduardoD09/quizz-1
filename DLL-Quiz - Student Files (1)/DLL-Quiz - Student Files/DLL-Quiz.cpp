@@ -41,10 +41,17 @@ struct DLL
   Node * insert( Node * position, T const & data )
   {
     ///////////////////////// TO-DO (1) //////////////////////////////
-  Node * begin() { return _head;      }
-  Node * end()   { return &_sentinel; }
-
-  void print();
+   Node * newNode = new Node( data );
+    newNode -> _next = position;
+    newNode -> _prev = position -> _prev;
+    position -> _prev -> _next = newNode;
+    position -> _prev = newNode;
+    if ( position == _head )
+    {
+        _head = newNode;
+    }
+    _size++;
+    return newNode;
     /////////////////////// END-TO-DO (1) ////////////////////////////
   }
 
